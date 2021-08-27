@@ -1,0 +1,9 @@
+Parameters:
+  SGDescription:
+    Description: Security Group Description
+    Type: String
+  SGPport:
+    Description: Simple Description with MinValue and MaxValue
+    Type: Number
+    MinValue: 22
+    MaxValue: 65535
