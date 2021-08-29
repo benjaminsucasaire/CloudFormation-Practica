@@ -1,3 +1,4 @@
+---
 Parameters:
   # Parametros para el Security Group
   SGDescription:
@@ -11,12 +12,12 @@ Parameters:
   SGIngressCIDR:
     Description: The IP address range can be used to communicate to the EC2 instances
     Type: String
-    MinLength: '9'
-    MaxLength: '18'
+    MinLength: "9"
+    MaxLength: "18"
     Default: 0.0.0.0/0
     AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})
-    ConstraintDescription: Use a valid IP CIDR range with format x.x.x.x/x.  
-  # Parametros para la instancia ec2  
+    ConstraintDescription: Use a valid IP CIDR range with format x.x.x.x/x.
+  # Parametros para la instancia ec2
   InstanceType:
     Description: EC2 instance type
     Type: String
@@ -42,7 +43,7 @@ Parameters:
   DbSubnetIpBlocks:
     Description: "Comma delimited list of CIDR blocks"
     Type: CommaDelimitedList
-    Default: "10.0.48.0/24, 10.0.112.0/24, 10.0.176.0/24"
+    Default: "172.31.18.0/20, 172.31.19.0/20, 172.31.20.0/20"
   # Password para un db
   DBPasword:
     NoEcho: true
@@ -57,7 +58,11 @@ Resources:
       InstanceType: !Ref InstanceType
       KeyName: !Ref KeyPairName
       ImageId: "ami-09e67e426f25ce0d7"
-
+  # Elastic IP
+  MyElasticIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      InstanceId: !Ref MyInstance
   # Creacion de un security group
   MySecurityGroup:
     Type: "AWS::EC2::SecurityGroup"
