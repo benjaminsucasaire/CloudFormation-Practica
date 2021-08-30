@@ -4,7 +4,7 @@ Resources:
   MySecurityGroupSSH:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Permitir  Acceso SSH en el puerto 22 
+      GroupDescription: Permitir  Acceso SSH en el puerto 22
       SecurityGroupIngress:
         - CidrIp: 0.0.0.0/0
           FromPort: 22
